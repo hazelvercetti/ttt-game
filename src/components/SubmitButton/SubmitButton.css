@@ -1,0 +1,18 @@
+.submit-button {
+  width: 200px;
+  height: 50px;
+  border-radius: 25px;
+  box-sizing: border-box;
+  border: 4px solid rgb(42, 85, 42);
+  background-color: rgba(54, 131, 102, 1);
+  color: #fff;
+  font-size: 18px;
+  font-family: 'Major Mono Display', ;
+  outline: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.submit-button:hover {
+  background-color: rgb(34, 82, 64);
+}

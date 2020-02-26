@@ -1,5 +1,6 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import Board from './components/Board';
+import SubmitButton from './components/SubmitButton';
 import CellValue from './types/CellValue';
 import Turn from './types/Turn';
 import { generateEmptyCells, checkWinPattern } from './utils/Board';
@@ -26,20 +27,40 @@ function App() {
 
     if (turnStatus.gameEnd) {
       setHighlightCells(turnStatus.winPattern);
+      setTurn(Turn.end);
     } else {
       const nextTurn = turn === Turn.player1 ? Turn.player2 : Turn.player1;
       setTurn(nextTurn);
     }
   }, [ cells, turn ]);
 
+  const handleNewGameClick = useCallback(() => {
+    setCells(generateEmptyCells());
+    setHighlightCells(emptyIndexArray);
+    setTurn(Turn.player1);
+  }, []);
+  
+  const turnLabel = useMemo(() => {
+    if (turn === Turn.end) {
+      return 'Game finished!';
+    }
+    return `Turn: ${turn}`;
+  }, [ turn ]);
+
   return (
     <div className="wrapper">
-      <div className="player-title">Turn: {turn}</div>
+      <div className="player-title">{turnLabel}</div>
       <Board
         cells={cells}
         highlightCells={highlightCells}
         onCellClick={handleCellClick}
       />
+      {turn === Turn.end && (
+        <SubmitButton
+          label="New game"
+          onClick={handleNewGameClick}
+        />
+      )}
     </div>
   );
 }
