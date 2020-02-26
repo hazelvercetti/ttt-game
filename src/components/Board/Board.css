@@ -2,4 +2,7 @@
   display: flex;
   width: 300px;
   flex-wrap: wrap;
+  padding: 20px;
+  border-radius: 20px;
+  background-color: rgba(0,0,0,0.03);
 }

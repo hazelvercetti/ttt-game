@@ -31,6 +31,7 @@ function checkForWin(cells: CellValue[], turn: Turn) {
 
 function App() {
   const [ cells, setCells ] = useState(generateCells());
+  const [ highlightCells, setHighlightCells ] = useState([]);
   const [ turn, setTurn ] = useState(Turn.player1);
 
   const handleCellClick = useCallback((cellId) => {
@@ -56,9 +57,10 @@ function App() {
 
   return (
     <div className="wrapper">
-      <div>{turn}</div>
+      <div className="player-title">Turn: {turn}</div>
       <Board
         cells={cells}
+        highlightCells={highlightCells}
         onCellClick={handleCellClick}
       />
     </div>

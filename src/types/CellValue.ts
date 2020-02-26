@@ -1,6 +1,6 @@
 enum CellValue {
   X = 'x',
-  O = '0',
+  O = 'o',
   empty = '',
 };
 
