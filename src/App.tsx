@@ -14,6 +14,9 @@ function App() {
   const [ turn, setTurn ] = useState(Turn.player1);
 
   const handleCellClick = useCallback((cellId) => {
+    if (turn === Turn.end) {
+      return;
+    }
     if (cells[cellId] !== CellValue.empty) {
       return;
     }
