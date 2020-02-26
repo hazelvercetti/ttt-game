@@ -11,12 +11,12 @@ const WIN_PATTERNS = [
   [2, 4, 6],
 ];
 
-interface TurnStatus {
+interface GameStatus {
   gameEnd: boolean,
   winPattern: number[],
 }
 
-export function checkWinPattern(cells: CellValue[]): TurnStatus {
+export function checkGameStatus(cells: CellValue[]): GameStatus {
   for (let i = 0; i < WIN_PATTERNS.length; i += 1) {
     const p = WIN_PATTERNS[i];
 
@@ -30,6 +30,15 @@ export function checkWinPattern(cells: CellValue[]): TurnStatus {
       };
     }
   }
+
+  const filledCells = cells.filter(
+    (cell) => cell !== CellValue.empty
+  );
+
+  if (filledCells.length === cells.length) {
+    return { gameEnd: true, winPattern: [] };
+  }
+
   return { gameEnd: false, winPattern: [] };
 }
 

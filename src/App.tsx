@@ -3,7 +3,7 @@ import Board from './components/Board';
 import SubmitButton from './components/SubmitButton';
 import CellValue from './types/CellValue';
 import Turn from './types/Turn';
-import { generateEmptyCells, checkWinPattern } from './utils/Board';
+import { generateEmptyCells, checkGameStatus } from './utils/Board';
 import './App.css';
 
 const emptyIndexArray: number[] = [];
@@ -23,10 +23,10 @@ function App() {
     newCells[cellId] = cellNextValue;
     setCells(newCells);
   
-    const turnStatus = checkWinPattern(newCells);
+    const gameStatus = checkGameStatus(newCells);
 
-    if (turnStatus.gameEnd) {
-      setHighlightCells(turnStatus.winPattern);
+    if (gameStatus.gameEnd) {
+      setHighlightCells(gameStatus.winPattern);
       setTurn(Turn.end);
     } else {
       const nextTurn = turn === Turn.player1 ? Turn.player2 : Turn.player1;
